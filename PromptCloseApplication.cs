@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.Deployment.WindowsInstaller;
+
 
 namespace ClosePromptCA
 {
@@ -13,6 +15,10 @@ namespace ClosePromptCA
         private System.Threading.Timer _timer;
         private Form _form;
         private IntPtr _mainWindowHanle;
+
+        private Session sess;
+
+
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -40,6 +46,12 @@ namespace ClosePromptCA
             return true;
         }
 
+        public bool Prompt(Session session)
+        {
+            sess = session;
+            return Prompt();
+        }
+
         bool ShowDialog()
         {
             if (_form.ShowDialog(new WindowWrapper(_mainWindowHanle)) == DialogResult.OK)
@@ -55,9 +67,12 @@ namespace ClosePromptCA
             _form.Close();
         }
 
-        static bool IsRunning(string processName)
+        bool IsRunning(string processName)
         {
-            return Process.GetProcessesByName(processName).Length > 0;
+            this.Log("Looking for {0}", processName);
+            var process = Process.GetProcessesByName(processName);
+            this.Log("Found process");
+            return process.Length > 0;
         }
 
         public void Dispose()
@@ -66,6 +81,29 @@ namespace ClosePromptCA
                 _timer.Dispose();
             if (_form != null && _form.Visible)
                 _form.Close();
+        }
+
+        private void Log(String message_format, params object[] args)
+        {
+            if (sess != null)
+                sess.Log(message_format, args);
+        }
+
+        internal bool Close(Session session)
+        {
+            Logger.session = session;
+
+            Logger.Write("Looking for {0}", _processName);
+            var process = Process.GetProcessesByName(_processName);
+            Logger.Write("Found process {0}", process);
+            if (process.Length > 0)
+                foreach (var p in process)
+                {
+                    Logger.Write("Killing {0}", p);
+                    p.Kill();
+                }
+
+            return true;
         }
     }
 }

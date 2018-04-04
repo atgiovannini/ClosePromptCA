@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClosePromptCA", "ClosePromptCA.csproj", "{E6A19A3B-810E-49BB-9D9F-CFCFE6D3679F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6A19A3B-810E-49BB-9D9F-CFCFE6D3679F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E6A19A3B-810E-49BB-9D9F-CFCFE6D3679F}.Debug|x86.ActiveCfg = Debug|x86
+		{E6A19A3B-810E-49BB-9D9F-CFCFE6D3679F}.Debug|x86.Build.0 = Debug|x86
+		{E6A19A3B-810E-49BB-9D9F-CFCFE6D3679F}.Release|Any CPU.ActiveCfg = Release|x86
+		{E6A19A3B-810E-49BB-9D9F-CFCFE6D3679F}.Release|x86.ActiveCfg = Release|x86
+		{E6A19A3B-810E-49BB-9D9F-CFCFE6D3679F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3981C209-A457-4CE8-AF1E-959528B5FEC0}
+	EndGlobalSection
+EndGlobal
