@@ -89,13 +89,11 @@ namespace ClosePromptCA
                 sess.Log(message_format, args);
         }
 
-        internal bool Close(Session session)
+        internal bool Close()
         {
-            Logger.session = session;
-
             Logger.Write("Looking for {0}", _processName);
             var process = Process.GetProcessesByName(_processName);
-            Logger.Write("Found process {0}", process);
+            Logger.Write("Found process {0}", process.Length);
             if (process.Length > 0)
                 foreach (var p in process)
                 {

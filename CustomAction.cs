@@ -51,6 +51,7 @@ namespace ClosePromptCA
         [CustomAction]
         public static ActionResult CloseHidden(Session session)
         {
+            Logger.session = session;
             Logger.Write("Begin ToCloseApplicationsHidden");
             try
             {
@@ -75,7 +76,7 @@ namespace ClosePromptCA
                     }
                     Logger.Write("Killing process {0} with name {1}", processes[i], displayNames[i]);
                     using (var prompt = new PromptCloseApplication(productName, processes[i], displayNames[i]))
-                        if (!prompt.Close(session))
+                        if (!prompt.Close())
                         {
                             Logger.Write("Process kill failed with no args");
                             return ActionResult.Failure;
